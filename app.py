@@ -6,6 +6,13 @@ from sqlalchemy.orm import Mapped, mapped_column
 
 app = flask.Flask(__name__)
 
+
+@app.route('/')
+def index():
+    # Copilot generated this:
+    return '<marquee>Съли е най-добрият!</marquee>'
+
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///messages.db'
 
 db = SQLAlchemy(app)
