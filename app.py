@@ -1,5 +1,3 @@
-from datetime import datetime
-
 import flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import Mapped, mapped_column
@@ -21,7 +19,6 @@ db = SQLAlchemy(app)
 class Message(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
     text: Mapped[str]
-    created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
     is_liked: Mapped[bool] = mapped_column(default=False)
     is_from_user: Mapped[bool] = mapped_column(default=True)
 
@@ -29,7 +26,6 @@ class Message(db.Model):
         result = {
             'id': self.id,
             'text': self.text,
-            'created_at': self.created_at,
             'is_liked': self.is_liked
         }
         if self.is_from_user:
