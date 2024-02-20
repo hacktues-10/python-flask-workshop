@@ -53,7 +53,7 @@ def create_message():
     user_message = Message(text=text)
 
     # TODO: Добави AI тук
-    sully_message = Message(text='🤫', is_from_user=False)
+    sully_message = Message(text='🤐', is_from_user=False)
 
     db.session.add(user_message)
     db.session.add(sully_message)
