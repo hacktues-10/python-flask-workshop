@@ -35,10 +35,10 @@ class Message(db.Model):
         }
         if self.is_from_user:
             result['from'] = 'Вие'
-            result['avatar'] = '<URL на профилната снимка на потребителя>'
+            result['avatar'] = 'https://hacktues.bg/workshop/user.png'
         else:
             result['from'] = 'Съли'
-            result['avatar'] = '<URL на профилната снимка на Съли>'
+            result['avatar'] = 'https://hacktues.bg/workshop/sully.png'
         return result
 
 
