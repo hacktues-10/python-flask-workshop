@@ -45,10 +45,15 @@ def read_history():
 @app.post('/messages')
 def create_message():
     text = flask.request.json['text']
-    message = Message(text=text)
-    db.session.add(message)
+    user_message = Message(text=text)
+
+    sully_message = Message(text='...', is_from_user=False)
+
+    db.session.add(user_message)
+    db.session.add(sully_message)
     db.session.commit()
-    return message.to_json()
+    
+    return [user_message.to_json(), sully_message.to_json()]
 
 
 with app.app_context():
