@@ -1,6 +1,11 @@
 import flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import Mapped, mapped_column
+from src.llama import Sully, dummySully
+
+
+chatbot = Sully()
+dummy_chatbot = dummySully()
 
 app = flask.Flask(__name__)
 
@@ -48,8 +53,8 @@ def create_message():
     text = flask.request.json['text']
     user_message = Message(text=text)
 
-    # TODO: Добави AI тук
-    sully_message = Message(text='🤐', is_from_user=False)
+    sully_response = chatbot.prompt(text)
+    sully_message = Message(text=sully_response, is_from_user=False)
 
     db.session.add(user_message)
     db.session.add(sully_message)
@@ -80,4 +85,5 @@ def like_message(message_id):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # Създава таблиците в базата данни, ако не съществуват
-    app.run(debug=True)
+
+    app.run(debug=True, use_reloader=False)
