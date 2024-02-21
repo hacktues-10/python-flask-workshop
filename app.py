@@ -15,12 +15,17 @@ class Message(db.Model):
     is_from_user: Mapped[bool] = mapped_column(default=True)
 
     def to_json(self):
-        return {
+        result = {
             'id': self.id,
             'text': self.text,
-            'from': 'You',
-            'avatar': 'https://hacktues.bg/workshop/user.png'
         }
+        if self.is_from_user:
+            result['from'] = 'Вие'
+            result['avatar'] = 'https://hacktues.bg/workshop/user.png'
+        else:
+            result['from'] = 'Съли'
+            result['avatar'] = 'https://hacktues.bg/workshop/sully.png'
+        return result
 
 
 @app.get('/')
