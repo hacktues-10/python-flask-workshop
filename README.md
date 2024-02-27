@@ -17,17 +17,21 @@
 
 ## Инструкции за пускане на проекта
 
+> **Бележка:** Всичко при командите до `$` включително е част от prompt-а на командния ред. Не го копирайте като копирате команди от тук.
+
 1. Създаване на Python виртуална среда *(ако не използвате PyCharm)*
 ```console
 $ python -m venv venv
+$ . venv/bin/activate
+(venv) $
 ```
 
 2. Инсталиране на зависимостите
 ```console
-$ pip install -r requirements.txt
+(venv) $ pip install -r requirements.txt
 ```
 
 3. Стартиране на сървъра
 ```console
-$ python app.py
+(venv) $ python app.py
 ```
